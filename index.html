@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Weather Map</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="node_modules/leaflet/dist/leaflet.css"/>
+    <script src="node_modules/leaflet/dist/leaflet.js"></script>
+    <script src="weatherClient.js"></script>
+    <style>
+        body {
+            background-color: #FFF;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0 auto;
+            display: flex;
+            flex-flow: column;
+        }
+        
+        header {
+            background-color: #469095;
+        }
+    
+        h1 {
+            color: #FFF;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 15px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 95vw;
+            text-align: center;
+            margin: 10px auto;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .data {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            text-align: left;
+            font-size: 16px;
+            line-height: 160%;
+            padding: 10px;
+        }
+
+        .map {
+            flex-grow: 2;
+            height: 400px;
+        }
+
+        select {
+            height: 100%;
+            width: 50%;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Weather Map</h1>
+    </header>
+    <main>
+        <div class="container">
+            <div class="data">
+                <div class="row">
+                    <label for="city">City:</label>
+                    <select id="city"></select>
+                </div>
+                <br />
+                <div class="row">
+                    <label>Description:</label>
+                    <span id="description"></span>
+                </div>
+                <div class="row">
+                    <label>Wind::</label>
+                    <span id="wind"></span>
+                </div>
+                <div class="row">
+                    <label>Temperature:</label>
+                    <span id="temperature"></span>
+                </div>
+                <div class="row">
+                    <label>Humidity:</label>
+                    <span id="humidity"></span>
+                </div>
+            </div>
+            <div id="mapId" class="map"></div>
+        </div>
+    </main>
+</body>
+
+</html>
