@@ -6,7 +6,6 @@ const FIRST = 0;
 const MAP_ZOOM = 2;
 const MAX_MAP_ZOOM = 18;
 const ABS_ZERO = 273.15;
-const MS_IN_MINUTE = 60000;
 const CACHE_KEEP_MINUTES = 1;
 
 class City {
@@ -18,34 +17,35 @@ class City {
     }
 }
 
-class CacheEntry {
+class CacheItem {
     constructor(id, data) {
         this.id = id;
         this.setData(data);
     }
 
-    setData = function(data) {
+    setData(data) {
         this.data = data;
         this.created = new Date();
     }
 
-    isExpired = function() {
+    isExpired(expirationMinutes) {
         // get difference in minutes between now and created
+        const msInMinute = 60000;
         let now = new Date();
-        let diff = (now.getTime() - this.created.getTime()) / MS_IN_MINUTE;
-        return diff > CACHE_KEEP_MINUTES;
+        let diff = (now.getTime() - this.created.getTime()) / msInMinute;
+        return diff > expirationMinutes;
     }
 }
 
 class Cache {
-    entries = [];
+    items = [];
 
-    getEntry = function(id) {
-        return this.entries.find(e => e.id === id);
+    getItem(id) {
+        return this.items.find(e => e.id === id);
     }
 
-    newEntry = function(id, data) {
-        this.entries.push(new CacheEntry(id, data));
+    newItem(id, data) {
+        this.items.push(new CacheItem(id, data));
     }
 }
 
@@ -97,8 +97,8 @@ function getWeather() {
     let cityId = selectedCityId();
 
     // check cache
-    let cachedWeather = cache.getEntry(cityId);
-    if(cachedWeather && !cachedWeather.isExpired()) {
+    let cachedWeather = cache.getItem(cityId);
+    if(cachedWeather && !cachedWeather.isExpired(CACHE_KEEP_MINUTES)) {
         setDataToHtml(cachedWeather.data);
     }
     else {
@@ -114,7 +114,7 @@ function getWeather() {
                     cachedWeather.setData(data);
                 }
                 else {
-                    cache.newEntry(cityId, data);
+                    cache.newItem(cityId, data);
                 }
             });
     }
