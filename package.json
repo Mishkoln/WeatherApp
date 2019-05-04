@@ -4,19 +4,15 @@
   "description": "Calling weather api and displaying selected city on the map",
   "main": "start.ts",
   "scripts": {
-    "start": "ts-node start.ts",
-    "dev": "nodemon --exec ts-node start.ts"
+	"start": "ts-node start.ts",
+	"dev": "nodemon --exec ts-node start.ts"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Mishkoln/WeatherApp.git"
+	"type": "git",
+	"url": "git+https://github.com/Mishkoln/WeatherApp.git"
   },
   "author": "Michael Shkolnik",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Mishkoln/WeatherApp/issues"
-  },
-  "homepage": "https://github.com/Mishkoln/WeatherApp#readme",
   "dependencies": {
     "leaflet": "^1.4.0"
   },
