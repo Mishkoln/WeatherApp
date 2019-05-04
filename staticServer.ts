@@ -18,7 +18,6 @@ export class StaticServer {
     }
 
     private onRequest(req: http.IncomingMessage, res: http.ServerResponse): void {
-        console.log(contentTypes);
         const reqUrl: url.UrlWithStringQuery = url.parse(req.url);
         const fileName: string = reqUrl.pathname === '/' ?
             'index.html' : reqUrl.pathname.substring(1);
