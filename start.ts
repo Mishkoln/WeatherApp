@@ -1,4 +1,4 @@
-import { StaticServer } from './StaticServer';
+import { StaticServer } from './staticServer';
 
 const hostname: string = '127.0.0.1';
 const port: number = 8080;
